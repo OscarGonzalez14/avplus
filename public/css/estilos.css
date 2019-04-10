@@ -1,0 +1,107 @@
+
+
+
+/*index*/
+
+body.pagina_index {
+    background: white;
+}
+
+.pagina_index h2{
+
+  color: blue;
+  margin-top:38px;
+  margin-bottom:38px;
+}
+
+.pagina_index label{
+
+  color:#17202A;
+}
+
+
+/*menu principal*/
+
+.container-fluid.navbar_menu.contenedor-menu-principal {
+    background: #D8D8D8;
+}
+
+.container-fluid a.navbar-brand, .container-fluid a.navbar-brand:hover  {
+    color:black;
+}
+
+li.dropdown.navbar_dropdown {
+    background: #fff;
+    margin: 6px;
+}
+
+
+/*menu lateral*/
+    
+
+    a.btn.btn-primary.ajax-link:hover {
+        background: #265a88;
+    }
+
+/*modulo reporte-pedidos*/
+
+  form.formulario-reporte-pedidos select{width:80%;}
+
+
+/*pagina agregar_venta.php*/
+
+ .pagina_venta ul.menu_izquierdo >li>a {
+    color: #fff;
+}
+
+/*footer*/
+
+footer.footer {
+  color:blue;
+    background: #F2F2F2;
+    height: 50px;
+    padding: 13px 31px;
+}
+
+footer a, footer a:hover{
+  color:black;
+}
+
+
+ .btn-teal,
+ .btn-teal:hover{
+
+    background: #00aba9;
+    color: white;
+  }
+
+  .btn-infos,
+  .btn-infos:hover,
+  .btn-infos:active{
+
+    background: #4285F4;
+    color: white;
+  }
+
+  .btn-dark,
+  .btn-dark:hover,
+  .btn-dark:active{
+
+    background: #1d1d1d;
+    color: white;
+  }
+  .btn-blue,
+  .btn-blue:hover,
+  .btn-blue:active{
+
+    background:  #034f84;
+    color: white;
+  }
+
+  .btn-edit,
+  .btn-edit:hover,
+  .btn-edit:active{
+
+    background: #1e7145;
+    color: white;
+  }

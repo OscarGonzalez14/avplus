@@ -1,0 +1,189 @@
+CREATE TABLE IF NOT EXISTS `avplushost`.`consultas` (
+  `id_consulta` INT(11) NOT NULL AUTO_INCREMENT,
+  `motivo` TEXT NULL DEFAULT NULL,
+  `patologias` TEXT NULL DEFAULT NULL,
+  `fecha_creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `oiesfreasl` VARCHAR(10) NULL DEFAULT NULL,
+  `oicilindrosl` VARCHAR(10) NULL DEFAULT NULL,
+  `oiejesl` VARCHAR(10) NULL DEFAULT NULL,
+  `oiprismal` VARCHAR(10) NULL DEFAULT NULL,
+  `oiadicionl` VARCHAR(10) NULL DEFAULT NULL,
+  `odesferasl` VARCHAR(10) NULL DEFAULT NULL,
+  `odcilndrosl` VARCHAR(10) NULL DEFAULT NULL,
+  `odejesl` VARCHAR(10) NULL DEFAULT NULL,
+  `odprismal` VARCHAR(10) NULL DEFAULT NULL,
+  `odadicionl` VARCHAR(10) NULL DEFAULT NULL,
+  `oiesferasa` VARCHAR(10) NULL DEFAULT NULL,
+  `oicolindrosa` VARCHAR(10) NULL DEFAULT NULL,
+  `oiejesa` VARCHAR(10) NULL DEFAULT NULL,
+  `oiprismaa` VARCHAR(10) NULL DEFAULT NULL,
+  `oiadiciona` VARCHAR(10) NULL DEFAULT NULL,
+  `odesferasa` VARCHAR(10) NULL DEFAULT NULL,
+  `odcilindrosa` VARCHAR(10) NULL DEFAULT NULL,
+  `odejesa` VARCHAR(10) NULL DEFAULT NULL,
+  `dprismaa` VARCHAR(10) NULL DEFAULT NULL,
+  `oddiciona` VARCHAR(10) NULL DEFAULT NULL,
+  `sugeridos` VARCHAR(200) NULL DEFAULT NULL,
+  `diagnostico` TEXT NULL DEFAULT NULL,
+  `medicamento` VARCHAR(100) NULL DEFAULT NULL,
+  `observaciones` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`id_consulta`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+
+<div class="modal fade" id="consultasModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Agregar Paciente</h4>
+        </div>
+
+<div class="modal-body">
+
+  <form method="post">
+    
+    <div class="form-group row">
+<div class="col-xs-3">
+        <label for="ex1">Cod.Paciente</label>
+        <input class="form-control" id="cod_paciente" name="cod_paciente" type="text">
+      </div>
+      <div class="col-xs-9">
+        <label for="ex3">Nombre</label>
+        <input class="form-control" id="nombre_pac" type="text" name="nombre_pac" >
+      </div>
+
+   
+    <div class="col-xs-12">
+      <label for="comment">Motivo de Consulta</label>
+      <textarea cols="80" class="form-control" rows="2" id="motivo" name="motivo"></textarea>
+    </div>
+
+    <div class="col-xs-12">
+      <label for="comment">Patologias</label>
+      <textarea cols="80" class="form-control" rows="2" id="patologias" name="patologias"></textarea>
+    </div>
+
+      <div class="col-xs-12">
+        <p> </p>
+      </div>
+
+
+
+
+  <div><center><h5><strong>Lensometria</strong></h5></center></div>
+  <table class="table">
+
+    <thead class="thead-light">
+      <tr>
+        <th style="text-align:center">OJO</th>
+        <th style="text-align:center">ESFERAS</th>
+        <th style="text-align:center">CILIDROS</th>
+        <th style="text-align:center">EJE</th>
+        <th style="text-align:center">PRISMA</th>
+        <th style="text-align:center">ADICION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>OI</td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiesfreasl" id="oiesfreasl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oicilindrosl" id="oicilindrosl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiejesl" id="oiejesl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiprismal" id="oiprismal"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiadicionl" id="oiadicionl"></td>
+      </tr>
+      <tr>
+        <td>OD</td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odesferasl" id="odesferasl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odcilndrosl" id="odcilndrosl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odejesl" id="odejesl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odprismal"  id="odprismal"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odadicionl" id="odadicionl"></td>
+        
+      </tr>
+    </tbody>
+  </table>
+<!--=============================AUTOREFELEJADO================-->
+<div></div>
+
+   <div><center><h5><strong>RX Autoreflejado</strong></h5></center></div> 
+
+       <table class="table">
+
+    <thead class="thead-light">
+      <tr>
+        <th style="text-align:center">OJO</th>
+        <th style="text-align:center">ESFERAS</th>
+        <th style="text-align:center">CILIDROS</th>
+        <th style="text-align:center">EJE</th>
+        <th style="text-align:center">PRISMA</th>
+        <th style="text-align:center">ADICION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>OI</td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiesferasa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oicolindrosa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiejesa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiprismaa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiadiciona"></td>
+      </tr>
+      <tr>
+        <td>OD</td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odesferasa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odcilindrosa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odejesa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="dprismaa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oddiciona"></td>        
+      </tr>
+    </tbody>
+  </table>
+
+  <!--==================== FIN Autoreflejado==================-->
+    <div class="col-xs-12">
+      <label for="comment">Lentes Sugeridos</label>
+      <input class="form-control" id="sugeridos" type="text" name="sugeridos" >
+    </div>
+
+    <div class="col-xs-12">
+      <label >Diagnostico</label>
+      <textarea cols="80" class="form-control" rows="2" id="diagnostico" name="diagnostico"></textarea>
+    </div>
+
+    <div class="col-xs-12">
+      <label>Medicamento</label>
+      <input class="form-control" id="medicamento" type="text" name="medicamento" >
+    </div>
+
+        <div class="col-xs-12">
+      <label >Observaciones</label>
+      <textarea cols="80" class="form-control" rows="2" id="observaciones" name="observaciones"></textarea>
+    </div>
+
+
+
+    </div>    
+       <input type="text" name="id_paciente" id="id_paciente"/>
+       <input type="text" name="id_usuario" id="id_usuario" value="<?php echo $_SESSION["id_usuario"];?>"/>
+ 
+    <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>Guardar</button>
+  
+  </form>
+
+  </div>
+        <div class="modal-footer">
+          <button class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,7 @@
+bd=id9155129_avplus_2019
+
+user = id9155129_root
+
+https://opticaavplus.000webhostapp.com/avproyecto/vistas/index.php
+
+pwd = avplus2019
