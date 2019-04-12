@@ -494,8 +494,6 @@
      break;
 
 
-     case "eliminar_producto":
-
 case "eliminar_producto":
 
 
@@ -526,7 +524,7 @@ case "eliminar_producto":
             else {
 
             	
-   	  	         $errors[]="El producto no se puede eliminar por que tiene ingresos Asociados y el Stock es mayor a cero";
+   	  	         $errors[]="Oops!! El producto no se puede eliminar por que tiene ingresos Asociados y el Stock es mayor a cero";
             }
 
         
@@ -574,5 +572,7 @@ case "eliminar_producto":
      break;
   	
        }
+  	
+     
 
 ?>

@@ -134,19 +134,16 @@
 
 
          /*metodo que valida si hay registros activos*/
-        public function get_producto_por_id_modelo($id_producto,$modelo){
+        public function get_producto_por_modelo($modelo){
 
            $conectar= parent::conexion();
 
 
-
-
-            $sql="select * from producto where id_producto=? and modelo=?";
+            $sql="select * from producto where modelo=?";
 
             $sql=$conectar->prepare($sql);
 
-            $sql->bindValue(1, $id_producto);
-            $sql->bindValue(2, $modelo);
+            $sql->bindValue(1, $modelo);
             $sql->execute();
 
             return $resultado= $sql->fetchAll(PDO::FETCH_ASSOC);

@@ -3,17 +3,15 @@
   //llamo a la conexion de la base de datos 
   require_once("../config/conexion.php");
   //llamo al modelo Producto
-  require_once("../modelos/Productos.php");
 
-  $productos = new Producto();
 
   require_once("../modelos/Consultas.php");
 
   $consultas = new Consulta();
 
       //declaramos las variables de los valores que se envian por el formulario y que recibimos por 
-   $id_producto=isset($_POST["id_producto"]);
-   $modelo=isset($_POST["modelo"]);
+   $id_consulta=isset($_POST["id_consulta"]);
+   $paciente=isset($_POST["paciente"]);
    $id_usuario=isset($_POST["id_usuario"]);
    $marca=isset($_POST["marca"]);
    $color=isset($_POST["color"]);
@@ -22,113 +20,15 @@
    $stock=isset($_POST["stock"]);
    $motivo=isset($_POST["motivo"]);
    $patologias=isset($_POST["patologias"]);
-        
+    $codigo=isset($_POST["codigo"]);    
 
-         switch($_GET["op"]){
-
-              case "guardaryeditar":
+    switch($_GET["op"]){
 
 
 
-			$consultas->registrar_consulta($motivo,$patologias,$id_paciente);
-		
+     case "listar":
 
-
-			$messages[]="La consulta se registró correctamente";
-
-
-      
-     //mensaje success
-     if (isset($messages)){
-				
-				?>
-				<div class="alert alert-success" role="alert">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<strong>¡Bien hecho!</strong>
-						<?php
-							foreach ($messages as $message) {
-									echo $message;
-								}
-							?>
-				</div>
-				<?php
-			}
-	 //fin success
-
-	 //mensaje error
-         if (isset($errors)){
-			
-			?>
-				<div class="alert alert-danger" role="alert">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<strong>Error!</strong> 
-						<?php
-							foreach ($errors as $error) {
-									echo $error;
-								}
-							?>
-				</div>
-			<?php
-
-			}
-
-	 //fin mensaje error
-
-
-     break;
-
-
-     case 'mostrar':
-
-	
-	$datos=$productos->get_producto_por_id($_POST["id_producto"]);
-
-
-                
-				foreach($datos as $row)
-				{
-					$output["producto_id"] = $row["id_producto"];
-					$output["marca"] = $row["marca"];
-					$output["modelo"] = $row["modelo"];
-					$output["color"] = $row["color"];
-					$output["precio_venta"] = $row["precio_venta"];
-					$output["stock"] = $row["stock"];
-					$output["medidas"] = $row["medidas"];
-					
-				}
-
-
-
-            echo json_encode($output);
-
-
-	 break;
-
-	     case "activarydesactivar":
-     
-     //los parametros id_producto y est vienen por via ajax
-     $datos=$productos->get_producto_por_id($_POST["id_producto"]);
-
-          // si existe el id del producto entonces recorre el array
-	      if(is_array($datos)==true and count($datos)>0){
-
-              //edita el estado del producto
-		      $productos->editar_estado($_POST["id_producto"],$_POST["est"]);
-
-
-		       //editar estado de la categoria por producto
-
-		    $productos->editar_estado_categoria_por_producto($_POST["id_categoria"],$_POST["est"]);
-
-		
-		     
-	        } 
-
-     break;
-
-        case "listar":
-
-     $datos=$productos->get_productos();
+     $datos=$consultas->get_consultas();
 
      //Vamos a declarar un array
  	 $data= Array();
@@ -137,38 +37,23 @@
 			{
 				$sub_array = array();
 
-			
-
-				  if($row["stock"]<=5){
-                      
-                     $stock = $row["stock"];
-                     $atributo = "badge bg-red-active";
-                            
-				 
-				  } else {
-
-				     $stock = $row["stock"];
-                     $atributo = "badge bg-green";
-                 
-                 }
 
 
 			
 				//$sub_array = array();
-				$sub_array[] = $row["modelo"];
-				$sub_array[] = $row["marca"];
-				$sub_array[] = $row["color"];
-				$sub_array[] = '$'.' '.$row["precio_venta"];
-				$sub_array[] = '<span class="'.$atributo.'">'.$row["stock"].'
-                  </span>';
-				$sub_array[] = $row["medidas"];
-
-
-				$sub_array[] = '<button type="button" onClick="mostrar('.$row["id_producto"].');" id="'.$row["id_producto"].'" class="btn btn-infos btn-md"><i class="glyphicon glyphicon-edit"></i> Editar</button>';
-
+				$sub_array[] = '<button type="button" class="btn btn-blue detconsultas" id="'.$row["id_consulta"].'" data-toggle="modal" data-target="#detalle_consulta"><i class="fa fa-eye" aria-hidden="true"></i></i> Ver Detalles</button>';
+				$sub_array[] = $row["id_consulta"];
+				$sub_array[] = date("d-m-Y", strtotime($row["fecha_reg"]));
+				
+				$sub_array[] = $row["nombres"];
+				$sub_array[] = $row["sugeridos"];
+				$sub_array[] = $row["diagnostico"];
+				$sub_array[] = $row["usuario"];
 
 				
-				$sub_array[] = '<button type="button" onClick="eliminar('.$row["id_producto"].');" id="'.$row["id_producto"].'" class="btn btn-dark btn-md"><i class="glyphicon glyphicon-edit"></i> Eliminar</button>';
+
+
+
               
          
 			
@@ -253,6 +138,60 @@
 
 
      break;
+
+     case 'ver_consultas':
+
+      $datos= $consultas->get_detalle_consultas($_POST["id_consulta"]);	
+
+            // si existe el proveedor entonces recorre el array
+	      if(is_array($datos)==true and count($datos)>0){
+
+				foreach($datos as $row)
+				{
+				$output["fecha_reg"] = date("d-m-Y", strtotime($row["fecha_reg"]));
+				$output["id_consulta"] = $row["id_consulta"];
+				$output["nombres"] = $row["nombres"];
+				$output["sugeridos"] = $row["sugeridos"];
+				$output["diagnostico"] = $row["diagnostico"];
+				$output["usuario"] = $row["usuario"];
+				$output["codigo"] = $row["codigo"];
+				$output["oiesfreasl"] = $row["oiesfreasl"];
+				$output["oicilindrosl"] = $row["oicilindrosl"];
+				$output["oiejesl"] = $row["oiejesl"];
+
+									
+				}
+		
+		      
+		          echo json_encode($output);
+
+
+	        } else {
+                 
+                 //si no existe el registro entonces no recorre el array
+                $errors[]="no existe";
+
+	        }
+
+
+	         //inicio de mensaje de error
+
+				if (isset($errors)){
+			
+					?>
+					<div class="alert alert-danger" role="alert">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>Error!</strong> 
+							<?php
+								foreach ($errors as $error) {
+										echo $error;
+									}
+								?>
+					</div>
+					<?php
+			      } 
+     	
+     	break;
 
 
      case "buscar_producto";

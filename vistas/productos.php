@@ -144,7 +144,7 @@
 
       <div class="col-xs-4">
         <label for="ex3">Stock Inicial</label>
-        <input class="form-control" id="stock" type="text" name="stock" value="0" placeholder="0" readonly>
+        <input class="form-control" id="stock" type="text" name="stock" value="0" placeholder="0">
       </div>
 
      </div>

@@ -17,11 +17,7 @@ function init(){
 		guardaryeditar(e);	
 	})
 
-	$("#consultas_form").on("submit",function(e)
-	{
 
-		mostrar(e);	
-	})
     
     //cambia el titulo de la ventana modal cuando se da click al boton
 	$("#add_button").click(function(){

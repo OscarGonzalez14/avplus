@@ -52,6 +52,10 @@
                     <div class="box-header with-border">
                           <h1 class="box-title">
                             <button class="btn btn-dark btn-lg" id="add_button" onclick="limpiar()" data-toggle="modal" data-target="#pacienteModal"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Paciente</button></h1>
+
+                            <a href="consultas.php"><button class="btn btn-blue btn-lg"><i class="fa fa-address-card-o" aria-hidden="true"></i>
+                              Consultas</button></h1></a>
+
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -109,7 +113,7 @@
         </div>
 <div class="modal-body">
 
-  <form method="post" id="paciente_form">
+  <form method="post" action="../ajax/registra.php">
     <div class="form-group row">
 
       <div class="col-xs-3">
@@ -153,7 +157,7 @@
   <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $_SESSION["id_usuario"];?>"/>
   <input type="hidden" name="codigo_paciente" id="codigo_paciente"/>
 
-<button type="submit" name="agregar" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
+<button type="submit"  class="btn btn-primary btn-block"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
 Guardar</button>
   </form>
 
@@ -184,7 +188,7 @@ Guardar</button>
       </div>  
         <div class="modal-body">
 
-    <form class="form-horizontal" method="post" action="../ajax/reg.php">
+    <form class="form-horizontal" method="post" action="../ajax/regista_consulta.php">
     <div class="form-group row">
 
   <div class="col-xs-3">
@@ -213,7 +217,7 @@ Guardar</button>
 <hr style="color:blue;">
     <div><center><h5 style="color:blue;"><strong>Lensometria</strong></h5></center></div>
 
-        <table class="table">
+<table class="table">
 
     <thead class="thead-light">
       <tr>
@@ -228,29 +232,68 @@ Guardar</button>
     <tbody>
       <tr>
         <td>OI</td>
-        <td> <input type="text" class="form-control" placeholder="Esferas" name="oiesfreasl"></td>
-        <td> <input type="text" class="form-control" placeholder="Cilindros" name="oicilindrosl"></td>
-        <td> <input type="text" class="form-control" placeholder="Ejes" name="oiejesl"></td>
-        <td> <input type="text" class="form-control" placeholder="Prisma" name="oiprismal"></td>
-        <td> <input type="text" class="form-control" placeholder="Adicion" name="oiadicionl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiesfreasl" ></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oicilindrosl" ></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiejesl" ></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiprismal" ></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiadicionl"></td>
       </tr>
       <tr>
         <td>OD</td>
-        <td> <input type="text" class="form-control" placeholder="Esferas" name="odesferasl"></td>
-        <td> <input type="text" class="form-control" placeholder="Cilindros" name="odcilndrosl"></td>
-        <td> <input type="text" class="form-control" placeholder="Ejes" name="odejesl"></td>
-        <td> <input type="text" class="form-control" placeholder="Prisma" name="odprismal"></td>
-        <td> <input type="text" class="form-control" placeholder="Adicion" name="odadicionl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odesferasl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odcilndrosl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odejesl"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odprismal"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odadicionl"></td>
         
       </tr>
     </tbody>
   </table>
 
 <hr style="color:blue;">
-    <div><center><h5 style="color:blue;"><strong>RX Autoreflejado</strong></h5></center></div>
+    <div><center><h5 style="color:blue;"><strong>RX Autorefractometro</strong></h5></center></div>
 
 
-       <table class="table">
+<table class="table">
+
+    <thead class="thead-light">
+      <tr>
+        <th style="text-align:center">OJO</th>
+        <th style="text-align:center">ESFERAS</th>
+        <th style="text-align:cente---r">CILIDROS</th>
+        <th style="text-align:center">EJE</th>
+        <th style="text-align:center">PRISMA</th>
+        <th style="text-align:center">ADICION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>OI</td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiesferasa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oicolindrosa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiejesa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiprismaa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiadiciona"></td>
+      </tr>
+      <tr>
+        <td>OD</td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odesferasa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odcilindrosa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odejesa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="dprismaa"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oddiciona"></td>        
+      </tr>
+    </tbody>
+  </table>
+
+  <!--==================== FIN Autoreflejado==================-->
+
+    <!--==================== Rx Final==================-->
+
+    <div><center><h5 style="color:blue;"><strong>RX Final</strong></h5></center></div>
+
+
+<table class="table">
 
     <thead class="thead-light">
       <tr>
@@ -265,34 +308,42 @@ Guardar</button>
     <tbody>
       <tr>
         <td>OI</td>
-        <td> <input type="text" class="form-control" placeholder="Esferas" name="oiesferasa"></td>
-        <td> <input type="text" class="form-control" placeholder="Cilindros" name="oicolindrosa"></td>
-        <td> <input type="text" class="form-control" placeholder="Ejes" name="oiejesa"></td>
-        <td> <input type="text" class="form-control" placeholder="Prisma" name="oiprismaa"></td>
-        <td> <input type="text" class="form-control" placeholder="Adicion" name="oiadiciona"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiesferasf"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oicolindrosf"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiejesf"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiprismaf"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oiadicionf"></td>
       </tr>
       <tr>
         <td>OD</td>
-        <td> <input type="text" class="form-control" placeholder="Esferas" name="odesferasa"></td>
-        <td> <input type="text" class="form-control" placeholder="Cilindros" name="odcilindrosa"></td>
-        <td> <input type="text" class="form-control" placeholder="Ejes" name="odejesa"></td>
-        <td> <input type="text" class="form-control" placeholder="Prisma" name="odprismaa"></td>
-        <td> <input type="text" class="form-control" placeholder="Adicion" name="oddiciona"></td>        
+        <td> <input type="text" class="form-control" placeholder="---" name="odesferasf"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odcilindrosf"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="odejesf"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="dprismaf"></td>
+        <td> <input type="text" class="form-control" placeholder="---" name="oddicionf"></td>        
       </tr>
     </tbody>
   </table>
 
-  <!--==================== FIN Autoreflejado==================-->
-
  
     <div class="col-xs-12">
         <label for="ex3">Lentes Sugeridos</label>
-        <input class="form-control" id="lentes" type="text" name="lentes">
+        <input class="form-control" id="sugeridos" type="text" name="sugeridos" placeholder="Lentes sugeridos">
     </div>
 
     <div class="col-xs-12">
       <label for="comment">Diagnostico</label>
-      <textarea cols="80" class="form-control" rows="2" id="diagnostico" name="diagnostico"></textarea>
+      <textarea cols="80" class="form-control" rows="2" id="diagnostico" name="diagnostico" placeholder="Diagnostico"></textarea>
+    </div>
+
+    <div class="col-xs-12">
+        <label for="ex3">Medicamento</label>
+        <input class="form-control" id="medicamento" type="text" name="medicamento" placeholder="Medicamento">
+    </div>
+
+        <div class="col-xs-12">
+      <label for="comment">Observaciones</label>
+      <textarea cols="80" class="form-control" rows="2" id="observaciones" name="observaciones" placeholder="Observaciones"></textarea>
     </div>
 
     <div class="col-xs-12">

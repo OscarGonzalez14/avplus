@@ -18,13 +18,26 @@ function init(){
 	listar_en_ventas();
 
 	 //cuando se da click al boton submit entonces se ejecuta la funcion guardaryeditar(e);
-	$("#consultas_form").on("submit",function(a)
+	$("#consultas_form").on("submit",function(e)
 	{
 
-		guardar(a);	
+		guardaryeditar(e);	
 	})
     
+    //cambia el titulo de la ventana modal cuando se da click al boton
+	$("#add_button").click(function(){
 
+		   
+		    /*habilita los campos categoria, producto, moneda ya que si se 
+            editaba uno que tenia registro asociado entonces al crear un nuevo registro aparecian los campos deshabilitados*/
+			 $("#categoria").attr('disabled', false);
+			 $("#producto").attr('disabled', false);
+			 $("#moneda").attr('disabled', false);
+			
+			
+			$(".modal-title").text("Agregar Aros");
+		
+	  });
 
 	
 }
@@ -52,7 +65,7 @@ function limpiar()
 //Función Listar
 function listar()
 {
-	tabla=$('#producto_data').dataTable(
+	tabla=$('#consultas_data').dataTable(
 	{
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
@@ -65,7 +78,7 @@ function listar()
 		        ],
 		"ajax":
 				{
-					url: '../ajax/producto.php?op=listar',
+					url: '../ajax/consultas.php?op=listar',
 					type : "get",
 					dataType : "json",						
 					error: function(e){
@@ -130,7 +143,7 @@ function listar()
 }
 
  //Mostrar datos del producto en la ventana modal 
-function mostrar(id_producto)
+function mostrarrr(id_producto)
 {
 	$.post("../ajax/producto.php?op=mostrar",{id_producto : id_producto}, function(data, status)
 	{
@@ -161,7 +174,7 @@ function mostrar(id_producto)
 					
 					$('.modal-title').text("Editar Producto");
 					$('#id_producto').val(id_producto);
-					;
+					
 					$('#resultados_ajax').html(data);
 					$("#producto_data").DataTable().ajax.reload();
 
@@ -179,14 +192,14 @@ function mostrar(id_producto)
 
 
 	//la funcion guardaryeditar(e); se llama cuando se da click al boton submit
-function guardar(a)
+function guardaryeditar(e)
 {
 	e.preventDefault(); //No se activará la acción predeterminada del evento
-	var formData = new FormData($("#consultas_form")[0]);
+	var formData = new FormData($("#producto_form")[0]);
 
 
 		$.ajax({
-			url: "../ajax/consultas.php?op=guardaryeditar",
+			url: "../ajax/producto.php?op=guardaryeditar",
 		    type: "POST",
 		    data: formData,
 		    contentType: false,
@@ -197,13 +210,13 @@ function guardar(a)
 		
 		         console.log(datos);
 
-	            $('#consultas_form')[0].reset();
-				$('#consultasModal').modal('hide');
+	            $('#producto_form')[0].reset();
+				$('#productoModal').modal('hide');
 
-				//$('#resultados_ajax').html(datos);
-				//$('#producto_data').DataTable().ajax.reload();
+				$('#resultados_ajax').html(datos);
+				$('#producto_data').DataTable().ajax.reload();
 				
-                //limpiar();
+                limpiar();
 					
 		    }
 
@@ -329,6 +342,39 @@ function listar_en_compras(){
 	       
 	}).DataTable();
 }
+
+ //VER DETALLE PROVEEDOR-COMPRA
+	 $(document).on('click', '.detconsultas', function(){
+	 	//toma el valor del id
+		var id_consulta = $(this).attr("id");
+
+		$.ajax({
+			url:"../ajax/consultas.php?op=ver_consultas",
+			method:"POST",
+			data:{id_consulta:id_consulta},
+			cache:false,
+			dataType:"json",
+			success:function(data)
+			{
+				
+				$("#nombres").html(data.nombres);
+				$("#codigo").html(data.codigo);
+				$("#usuario").html(data.usuario);
+			    $("#fecha_reg").html(data.fecha_reg);
+				$("#empresa").html(data.empresa);
+				$("#diagnostico").html(data.diagnostico);
+				$("#sugeridos").html(data.sugeridos);
+				$("#fecha_reg").html(data.fecha_reg);
+				$("#oiesfreasl").html(data.oiesfreasl);
+				$("#oicilindrosl").html(data.oicilindrosl);
+				$("#oiejesl").val(data.oiejesl);
+                 
+                 //puse el alert para ver el error, sin necesidad de hacer echo en la consulta ni nada
+				//alert(data);
+				
+			}
+		})
+	});
     
     //este es un arreglo vacio
 	var detalles = [];
@@ -456,7 +502,24 @@ obj.value es el valor del campo de texto*/
 		url:"../ajax/producto.php?op=registrar_compra",
 		method:"POST",
 		data:{'arrayCompra':JSON.stringify(detalles), 'numero_compra':numero_compra,'comprador':comprador,'id_usuario':id_usuario,'categoria':categoria},
-		cache: false,		
+		cache: false,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
 		dataType:"html",
 		error:function(x,y,z){
 			console.log(x);

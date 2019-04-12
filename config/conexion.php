@@ -36,7 +36,7 @@
 
 		 public function ruta(){
 
-		 	return "http://localhost/avproyecto/";
+		 	return "http://localhost/avproyectos/";
 		 }
 
 

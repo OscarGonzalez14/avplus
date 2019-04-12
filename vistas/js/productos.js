@@ -174,7 +174,7 @@ function mostrar(id_producto)
 					
 					$('.modal-title').text("Editar Producto");
 					$('#id_producto').val(id_producto);
-					;
+					
 					$('#resultados_ajax').html(data);
 					$("#producto_data").DataTable().ajax.reload();
 
